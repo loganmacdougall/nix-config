@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, inputs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 {
   imports =
@@ -33,24 +33,25 @@
   i18n.defaultLocale = "en_CA.UTF-8";
 
   # Enable the X11 windowing system.
-  services.xserver.enable = false;
-  services.xserver.displayManager.lightdm.enable = false;
-  services.xserver.desktopManager.deepin.enable = false;  # Enable the Deepin Desktop Environment.
+  services.xserver.enable = true;
+  services.xserver.displayManager.lightdm.enable = true;
+  services.xserver.desktopManager.deepin.enable = true;  # Enable the Deepin Desktop Environment.
   services.xserver.videoDrivers = [ "modesetting" ];
 
-  services.greetd = {
-    enable = true;
-    settings.default_session = {
-      command = "Hyprland";
-      user = "logan";
-    };
+  nix.settings = {
+    substituters = lib.mkAfter [ "https://hyprland.cachix.org" ];
+    trusted-public-keys = lib.mkAfter [
+      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+    ];
   };
 
-  programs.hyprland = {
-    enable = true;
-    package = inputs.hyprland.packages."${pkgs.system}".hyprland;
-    xwayland.enable = true;
-  };
+  #services.greetd = {
+  #  enable = true;
+  #  settings.default_session = {
+  #    command = "Hyprland";
+  #    user = "logan";
+  #  };
+  #};
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -99,8 +100,6 @@
     keepassxc
     tree
     kitty
-    libglvnd
-    mesa
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
