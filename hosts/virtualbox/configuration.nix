@@ -33,16 +33,23 @@
   i18n.defaultLocale = "en_CA.UTF-8";
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
+  services.xserver.enable = false;
+  services.xserver.displayManager.lightdm.enable = false;
+  services.xserver.desktopManager.deepin.enable = false;  # Enable the Deepin Desktop Environment.
+  services.xserver.videoDrivers = [ "modesetting" ];
 
-  # Enable the Deepin Desktop Environment.
-  services.xserver.displayManager.lightdm.enable = true;
-  services.xserver.desktopManager.deepin.enable = true;  # Enable the Deepin Desktop Environment.
+  services.greetd = {
+    enable = true;
+    settings.default_session = {
+      command = "Hyprland";
+      user = "logan";
+    };
+  };
 
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
+  programs.hyprland = {
+    enable = true;
+    package = inputs.hyprland.packages."${pkgs.system}".hyprland;
+    xwayland.enable = true;
   };
 
   # Enable CUPS to print documents.
@@ -79,14 +86,21 @@
     users."logan" = import ./home.nix;
   };
 
-
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+
+  environment.sessionVariables = {
+    WLR_NO_HARDWARE_CURSORS = "1";
+    NIXOS_OZONE_WL = "1";
+  };
 
   environment.systemPackages = with pkgs; [
     wget
     keepassxc
     tree
+    kitty
+    libglvnd
+    mesa
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
