@@ -118,6 +118,10 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  environment.variables = {
+    XCURSOR_SIZE = "24"; 
+ };
+
   environment.sessionVariables = {
     WLR_NO_HARDWARE_CURSORS = "1";
     NIXOS_OZONE_WL = "1";

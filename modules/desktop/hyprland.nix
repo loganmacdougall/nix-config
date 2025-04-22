@@ -11,6 +11,7 @@
       bind = [
         "$mod, Return, exec, $terminal"
         "$mod, P, exec, $launcher"
+        "$mod, F, fullscreen,"
         "$mod, C, killactive,"
         "$mod, M, exit,"
         
@@ -50,7 +51,11 @@
         workspace_swipe = false;
       };
 
-      exec-once = "waybar & mako & ulauncher --hide-window";
+      exec-once = [ 
+        "waybar &"
+        "mako &"
+        "ulauncher --hide-window &"
+      ];
     }; 
   };
 
