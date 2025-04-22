@@ -34,8 +34,14 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-  services.xserver.displayManager.lightdm.enable = true;
-  services.xserver.desktopManager.deepin.enable = true;  # Enable the Deepin Desktop Environment.
+  services.greetd = {
+    enable = true;
+    settings.default_session = {
+      command = "${pkgs.hyprland}/bin/Hyprland";
+      user = "logan";
+    };
+  };
+  services.xserver.desktopManager.gnome.enable = true;
   services.xserver.videoDrivers = [ "modesetting" ];
 
   nix.settings = {
@@ -101,6 +107,7 @@
     tree
     kitty
   ];
+
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
