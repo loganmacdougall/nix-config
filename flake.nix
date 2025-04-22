@@ -10,12 +10,21 @@
   }; 
 
   outputs = { self, nixpkgs, ... }@inputs: {
-    nixosConfigurations.virtualbox = nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit inputs;};
-      modules = [
-        ./hosts/virtualbox/configuration.nix
-        inputs.home-manager.nixosModules.default
-      ];
+    nixosConfigurations = {
+      virtualbox = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs;};
+        modules = [
+          ./hosts/virtualbox/configuration.nix
+          inputs.home-manager.nixosModules.default
+        ];
+      };
+      thinkpad = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs;};
+        modules = [
+          ./hosts/thinkpad/configuration.nix
+          inputs.home-manager.nixosModules.default
+        ];
+      };
     };
   };
 }
