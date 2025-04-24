@@ -58,13 +58,25 @@
   services.xserver.enable = true;
   services.greetd = {
     enable = true;
-    settings.default_session = {
-      command = "${pkgs.hyprland}/bin/Hyprland";
-      user = "logan";
+    settings = {
+      default_session = {
+        command = "${pkgs.cage}/bin/cage -s -- ${pkgs.greetd.gtkgreet}/bin/gtkgreet";
+        user = "greeter";
+      };
+      initial_session = {
+        command = "${pkgs.hyprland}/bin/Hyprland";
+        user = "logan";
+      };
     };
   };
   services.xserver.desktopManager.gnome.enable = true;
   services.xserver.videoDrivers = [ "modesetting" ];
+
+  systemd.user.services.lock-on-suspend = {
+    description = "Lock screen on suspend";
+    wantedBy = [ "sleep.target" ];
+    serviceConfig.ExecStart = "${pkgs.hyprlock}/bin/hyprlock";
+  };
 
   nix.settings = {
     substituters = lib.mkAfter [ "https://hyprland.cachix.org" ];
@@ -109,6 +121,12 @@
     description = "Logan MacDougall";
     extraGroups = [ "networkmanager" "wheel" ];
   };
+  users.users.greeter = {
+    isSystemUser = true;
+    description = "Greeter";
+    shell = pkgs.bashInteractive;
+  };
+  users.groups.greeter = {};
 
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
@@ -133,7 +151,11 @@
     tree
     kitty
     brightnessctl
+    pamixer
     ulauncher
+    hyprlock
+    greetd.gtkgreet
+    cage
   ];
 
 

@@ -13,8 +13,6 @@
       modules-left = [
         "hyprland/workspaces"
         "custom/divider"
-        "custom/weather"
-        "custom/divider"
         "cpu"
         "custom/divider"
         "memory"
@@ -61,12 +59,6 @@
       backlight = {
         format = "󰖨 {}";
         device = "acpi_video0";
-      };
-      "custom/weather" = {
-        tooltip = true;
-        format = "{}";
-        restart-interval = 300;
-        exec = "/home/roastbeefer/.cargo/bin/weather";
       };
       tray = {
         icon-size = 13;

@@ -6,6 +6,7 @@
     settings = {
       "$terminal" = "kitty";
       "$launcher" = "ulauncher-toggle";
+      "$locker" = "hyprlock";
       "$mod" = "SUPER";
 
       bind = [
@@ -13,6 +14,7 @@
         "$mod, P, exec, $launcher"
         "$mod, F, fullscreen,"
         "$mod, C, killactive,"
+        "$mod, L, exec, $locker"
         "$mod, M, exit,"
         
         "$mod, 1, workspace, 1"
