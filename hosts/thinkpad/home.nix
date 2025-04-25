@@ -9,6 +9,7 @@
     ../../modules/programs/firefox.nix
     ../../modules/programs/git.nix
     ../../modules/programs/ssh.nix
+    ../../modules/programs/zoxide.nix
     ../../modules/programs/neovim/neovim.nix
     ../../modules/desktop/hyprland.nix
     ../../modules/desktop/theme.nix
