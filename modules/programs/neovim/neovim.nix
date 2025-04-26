@@ -36,7 +36,7 @@
 
       {
         plugin = nvim-cmp;
-        config = toLuaFile ./plugins/treesitter.lua;
+        config = toLuaFile ./plugins/cmp.lua;
       }
 
       {
