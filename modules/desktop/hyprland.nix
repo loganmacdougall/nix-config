@@ -2,6 +2,7 @@
 {
   wayland.windowManager.hyprland = {
     enable = true;
+    xwayland.enable = false;
 
     settings = {
       "$terminal" = "kitty";
@@ -57,17 +58,22 @@
         "waybar &"
         "mako &"
         "ulauncher --hide-window &"
+        "nm-applet --indicator"
+        "blueman-applet"
       ];
     }; 
   };
 
+  services.mako.enable = true;
   programs = {
     kitty.enable = true;
     waybar.enable = true;
-    mako.enable = true;
     hyprlock.enable = true;
     wofi.enable = true;
   };
 
-  home.sessionVariables.NIXOS_OZONE_WL = "1";
+  home.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+    WLR_NO_HARDWARE_CURSORS = "1";
+  };
 }

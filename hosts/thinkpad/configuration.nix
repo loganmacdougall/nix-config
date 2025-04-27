@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./system-packages.nix
     ];
 
   # Bootloader.
@@ -51,7 +52,7 @@
         emoji = ["Noto Color Emoji"];
       };
     };
-    enableDefaultFonts = true;
+    enableDefaultPackages = true;
   };
 
   # Enable the X11 windowing system.
@@ -119,7 +120,7 @@
   users.users.logan = {
     isNormalUser = true;
     description = "Logan MacDougall";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
   };
   users.users.greeter = {
     isSystemUser = true;
@@ -133,31 +134,14 @@
     users."logan" = import ./home.nix;
   };
 
+  virtualisation.docker.enable = true;
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
   environment.variables = {
     XCURSOR_SIZE = "24"; 
  };
-
-  environment.sessionVariables = {
-    WLR_NO_HARDWARE_CURSORS = "1";
-    NIXOS_OZONE_WL = "1";
-  };
-
-  environment.systemPackages = with pkgs; [
-    wget
-    keepassxc
-    tree
-    kitty
-    brightnessctl
-    pamixer
-    ulauncher
-    hyprlock
-    greetd.gtkgreet
-    cage
-  ];
-
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -168,6 +152,8 @@
   # };
 
   # List services that you want to enable:
+  services.gvfs.enable = true;
+  services.udisks2.enable = true;
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
