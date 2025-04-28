@@ -4,7 +4,9 @@
     blueman
     brightnessctl
     cage
+    cargo
     clang-tools
+    eww
     gcc
     greetd.gtkgreet
     hyprlock
@@ -15,6 +17,7 @@
     ninja
     pamixer
     python314
+    rustc
     tree
     ulauncher
     vlc

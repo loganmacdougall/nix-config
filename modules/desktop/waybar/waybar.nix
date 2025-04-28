@@ -61,13 +61,14 @@
         device = "acpi_video0";
       };
       tray = {
-        icon-size = 13;
+        icon-size = 16;
         tooltip = false;
         spacing = 10;
       };
       network = {
         format = "󰖩 {essid}";
         format-disconnected = "󰖪 disconnected";
+        on-click = "nm-connection-editor";
       };
       clock = {
         format = " {:%I:%M %p   %m/%d} ";
