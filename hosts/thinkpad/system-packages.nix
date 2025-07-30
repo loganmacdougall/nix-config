@@ -1,26 +1,54 @@
-{pkgs, ...}: {
+{pkgs, myPackages, ...}:
+{
   environment.systemPackages = with pkgs; [
+    godot
+    nodejs_20
+    banner
     audacity
+    bc
+    binutils
     blueman
     brightnessctl
     cage
     cargo
     clang-tools
+    cmake
+    dig
     eww
     gcc
+    gdb
+    gnumake
     greetd.gtkgreet
+    handbrake
     hyprlock
+    jq
     keepassxc
     kitty
     libgcc
+    ncurses
     networkmanagerapplet
     ninja
+    openocd
+    openvpn
+    orca-slicer
     pamixer
+    prusa-slicer
     python314
+    qbittorrent
     rustc
+    screen
+    stlink
+    stlink-gui
+    stm32cubemx
+    sway
+    swaybg
     tree
     ulauncher
+    unzip
     vlc
+    wakeonlan
     wget
+    wireguard-tools
+    xournalpp
   ];
 }

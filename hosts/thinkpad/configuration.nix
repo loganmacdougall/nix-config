@@ -138,6 +138,7 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.segger-jlink.acceptLicense = true;
 
   environment.variables = {
     XCURSOR_SIZE = "24"; 
@@ -151,9 +152,24 @@
   #   enableSSHSupport = true;
   # };
 
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
+
+
   # List services that you want to enable:
   services.gvfs.enable = true;
   services.udisks2.enable = true;
+  services.blueman.enable = true;
+
+  services.udev.extraRules = ''
+    # ST-Link/V2
+    SUBSYSTEM=="usb", ATTR{idVendor}=="0483", ATTR{idProduct}=="3748", MODE="0666", GROUP="plugdev"
+    # ST-Link/V2-1
+    SUBSYSTEM=="usb", ATTR{idVendor}=="0483", ATTR{idProduct}=="374b", MODE="0666", GROUP="plugdev"
+    # ST-Link/V3
+    SUBSYSTEM=="usb", ATTR{idVendor}=="0483", ATTR{idProduct}=="374d", MODE="0666", GROUP="plugdev"
+  '';
+  services.udev.packages = [ pkgs.segger-jlink-headless ];
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;

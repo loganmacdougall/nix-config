@@ -8,20 +8,22 @@
 }
 
 window#waybar {
-  background: rgba(21, 18, 27, 0);
-  color: #cdd6f4;
+  background: rgba(0,0,0,0);
+  color: rgba(21, 18, 27, 1);
 }
 
 tooltip {}
 
-#workspaces button {}
+#workspaces button {
+  color: #9a8c98
+}
 
 #workspaces button.active {
-  color: #9ccfd8;
+  color: rgba(21, 18, 27, 1);
 }
 
 #workspaces button.focused {
-  color: #9ccfd8;
+  color: rgba(21, 18, 27, 1);
 }
 
 #workspaces button.urgent {}
@@ -31,7 +33,6 @@ tooltip {}
 #custom-language,
 #custom-updates,
 #custom-caffeine,
-#custom-weather,
 #window,
 #clock,
 #battery,
@@ -62,7 +63,5 @@ tooltip {}
 #pulseaudio.microphone {}
 
 #battery {}
-
-#custom-weather {}
 
 #custom-endright {}

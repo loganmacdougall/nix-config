@@ -19,7 +19,12 @@
         ];
       };
       thinkpad = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs;};
+        specialArgs = {
+          inherit inputs;
+          myPackages = import ./my_packages {
+            pkgs = import nixpkgs { system = "x86_64-linux"; };
+          };
+        };
         modules = [
           ./hosts/thinkpad/configuration.nix
           inputs.home-manager.nixosModules.default

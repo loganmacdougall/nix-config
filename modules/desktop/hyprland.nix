@@ -1,14 +1,18 @@
-{ pkgs, lib, inputs, ... }:
+{ ... }:
 {
   wayland.windowManager.hyprland = {
     enable = true;
-    xwayland.enable = false;
+    xwayland.enable = true;
 
     settings = {
       "$terminal" = "kitty";
       "$launcher" = "ulauncher-toggle";
       "$locker" = "hyprlock";
       "$mod" = "SUPER";
+
+      monitor = [
+        "eDP-1,1920x1080,auto,1,transform,0"        
+      ];
 
       bind = [
         "$mod, Return, exec, $terminal"
@@ -60,7 +64,13 @@
         "ulauncher --hide-window &"
         "nm-applet --indicator"
         "blueman-applet"
+        "swaybg -i ~/.config/wallpapers/background.jpg -m fill"
       ];
+
+      misc = {
+        disable_hyprland_logo = true;
+        disable_splash_rendering = true;
+      };
     }; 
   };
 
@@ -71,6 +81,8 @@
     hyprlock.enable = true;
     wofi.enable = true;
   };
+
+  home.file.".config/wallpapers/background.jpg".source = ./wallpapers/nixos_sky.jpg;
 
   home.sessionVariables = {
     NIXOS_OZONE_WL = "1";
