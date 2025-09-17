@@ -20,7 +20,7 @@
         "$mod, F, fullscreen,"
         "$mod, C, killactive,"
         "$mod, L, exec, $locker"
-        "$mod, M, exit,"
+        # "$mod, M, exit,"
         
         "$mod, 1, workspace, 1"
         "$mod, 2, workspace, 2"
@@ -62,9 +62,10 @@
         "waybar &"
         "mako &"
         "ulauncher --hide-window &"
-        "nm-applet --indicator"
-        "blueman-applet"
-        "swaybg -i ~/.config/wallpapers/background.jpg -m fill"
+        "nm-applet --indicator &"
+        "blueman-applet &"
+        "swaybg -i ~/.config/wallpapers/background.jpg -m fill &"
+        "$locker"
       ];
 
       misc = {

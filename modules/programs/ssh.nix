@@ -1,7 +1,7 @@
 { lib, pkgs, ... }:
 
 let
-  sshKeys = [ "github" "gitlab" ];
+  sshKeys = [ "github" "gitlab" "lab" ];
 in
 {
   programs.ssh.enable = true;
@@ -18,6 +18,13 @@ in
       user = "loganmacdougall";
       port = 22;
       identityFile = "~/.ssh/gitlab";
+      identitiesOnly = true;
+    };
+    "lab" = {
+      hostname = "loganmacdougall.research.cs.dal.ca";
+      user = "logan";
+      port = 22;
+      identityFile = "~/.ssh/lab";
       identitiesOnly = true;
     };
   };

@@ -152,11 +152,14 @@
   #   enableSSHSupport = true;
   # };
 
+  programs.steam.enable = true;
+
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
 
 
   # List services that you want to enable:
+  services.timesyncd.enable = true;
   services.gvfs.enable = true;
   services.udisks2.enable = true;
   services.blueman.enable = true;

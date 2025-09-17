@@ -1,10 +1,10 @@
 {pkgs, myPackages, ...}:
 {
   environment.systemPackages = with pkgs; [
-    godot
-    nodejs_20
-    banner
+    pavucontrol
     audacity
+    banner
+    steam
     bc
     binutils
     blueman
@@ -18,6 +18,7 @@
     gcc
     gdb
     gnumake
+    godot_4
     greetd.gtkgreet
     handbrake
     hyprlock
@@ -28,6 +29,7 @@
     ncurses
     networkmanagerapplet
     ninja
+    nodejs_20
     openocd
     openvpn
     orca-slicer
